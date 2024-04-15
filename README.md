@@ -5,7 +5,7 @@
 
 ## Frontend
 ### Install Node
-Go to nextjs Directory and install dependancies:
+Go to *nextjs* Directory and install dependencies:
 
     cd/nextjs
     npm install
