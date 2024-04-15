@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "${workspaceFolder}\\ve\\Scripts\\python.exe",
+    // other settings ...
+}
