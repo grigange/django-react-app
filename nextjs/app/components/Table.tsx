@@ -28,7 +28,6 @@ import { COLORS } from "../utils";
 
 
 const Table = ({data}:{data:Stock[]}) => {  
-    const [fdata,setFData] = useState<Stock[]>(data)
     const columns:ColumnDef<Stock>[] = useMemo<ColumnDef<Stock>[]>(
         () => [
           {
@@ -70,7 +69,7 @@ const Table = ({data}:{data:Stock[]}) => {
 
   const table = useReactTable({
     columns,
-    data:fdata,
+    data:data,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
