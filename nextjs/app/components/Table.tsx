@@ -25,6 +25,31 @@ import { COLORS } from "../utils";
 
 
 
+const Header = ({callback}:{callback:any}):ReactNode => 
+<div className="flex gap-2">
+  <div className="flex bg-bg2 border-2 border-bg3 rounded-xl gap-2 p-2 min-w-12 h-12">
+    <HiMagnifyingGlass size={32} className="ml-2" />
+    <input
+      className="bg-transparent text-base font-normal w-full p-2 focus:outline-none"
+      placeholder="Search..."
+      onChange={(e)=>callback(e.target.value)}
+      // onClick={e => e.stopPropagation()}
+    />
+  </div>
+  <button className="bg-bg2 border-2 border-bg3 hover:bg-bg3 transition-colors rounded-xl text-lg group font-bold p-2 w-12 h-12 flex items-center justify-center">
+    <HiAdjustmentsVertical
+      size={32}
+      className="fill-txt2 group-hover:fill-txt1"
+    />
+  </button>
+  <button className="bg-bg2 border-2 border-bg3 hover:bg-bg3 transition-colors rounded-xl text-lg group font-bold p-2 w-12 h-12 flex items-center justify-center">
+    <HiDocumentArrowDown
+      size={30}
+      className="fill-txt2 group-hover:fill-txt1"
+    />
+  </button>
+</div>
+;
 
 
 const Table = ({data}:{data:Stock[]}) => {  
@@ -60,11 +85,8 @@ const Table = ({data}:{data:Stock[]}) => {
     pageIndex: 0,
     pageSize: 5,
   })
-    const [searchTerm, setSearchTerm] = useState<string>("")
-
     const filterTable = (term:string) => {
         table.getAllColumns().forEach(c=>{c.setFilterValue(term)})
-        setSearchTerm(term)
     }
 
   const table = useReactTable({
@@ -81,35 +103,9 @@ const Table = ({data}:{data:Stock[]}) => {
     },
     // autoResetPageIndex: false, // turn off page index reset when sorting or filtering
   })
-  const Header = ():ReactNode => 
-  <div className="flex gap-2">
-    <div className="flex bg-bg2 border-2 border-bg3 rounded-xl gap-2 p-2 min-w-12 h-12">
-      <HiMagnifyingGlass size={32} className="ml-2" />
-      <input
-        className="bg-transparent text-base font-normal w-full p-2 focus:outline-none"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={(e)=>filterTable(e.target.value)}
-        // onClick={e => e.stopPropagation()}
-      />
-    </div>
-    <button className="bg-bg2 border-2 border-bg3 hover:bg-bg3 transition-colors rounded-xl text-lg group font-bold p-2 w-12 h-12 flex items-center justify-center">
-      <HiAdjustmentsVertical
-        size={32}
-        className="fill-txt2 group-hover:fill-txt1"
-      />
-    </button>
-    <button className="bg-bg2 border-2 border-bg3 hover:bg-bg3 transition-colors rounded-xl text-lg group font-bold p-2 w-12 h-12 flex items-center justify-center">
-      <HiDocumentArrowDown
-        size={30}
-        className="fill-txt2 group-hover:fill-txt1"
-      />
-    </button>
-  </div>
-;
   return (
     <>
-      <GridElementHeader title={"Asset Classes"} rightElement={<Header/>} />
+      <GridElementHeader title={"Asset Classes"} rightElement={<Header callback={filterTable}/>} />
       <div className="border border-bg3 rounded-2xl overflow-hidden ">
       <table className="w-full h-full">
         <thead>
@@ -169,7 +165,7 @@ const Table = ({data}:{data:Stock[]}) => {
           })}
         </tbody>
       </table></div>
-      <div className="flex items-center w-full justify-end gap-4 text-txt2">
+      <div className="flex items-center w-full mt-auto justify-end gap-4 text-txt2">
         <button
           className="group  bg-bg2 border-2 border-bg3 hover:bg-bg3 transition-colors rounded-lg p-1"
           onClick={() => table.firstPage()}

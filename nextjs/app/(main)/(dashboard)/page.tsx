@@ -59,7 +59,7 @@ export default function Home() {
       </div>
       <div
         id="grid"
-        className="grid z-0 grid-cols-12 row-auto xl:gap-6 gap-2 h-full w-full p-12 pt-[7.5rem] relative"
+        className="grid z-0 grid-cols-12 grid-rows-5 xl:gap-6 gap-2 h-full w-full p-12 pt-[7.5rem] relative"
       >
         <div className="3xl:col-span-3 row-span-3 col-span-3 xl:flex hidden flex-col gap-2 h-full overflow-hidden">
           <AssetAllocation />
@@ -72,7 +72,7 @@ export default function Home() {
         <div className="3xl:col-span-7 3xl:row-span-3 xl:col-span-9 xl:row-span-2 col-span-12 row-span-2 flex flex-col gap-2">
           <PortfolioValueGraph data={data} />
         </div>
-        <div className="col-span-12 row-span-2 flex flex-col gap-2">
+        <div className="col-span-12 row-span-2 flex flex-col gap-2 h-full min-h-max">
           <Table data={tableData} />
         </div>
       </div>
